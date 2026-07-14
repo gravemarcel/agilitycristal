@@ -676,14 +676,16 @@
         .testimonials {
             background: #0a0a0a;
         }
-        .testimonial-card {
+        .modality-card, .pricing-card, .schedule-day, .testimonial-card {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        .testimonial-card.revealed {
-            opacity: 1;
-            transform: translateY(0);
+        .modality-card.revealed, .pricing-card.revealed, .schedule-day.revealed, .testimonial-card.revealed {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        .about-grid, .contact-grid {
+            /* grid containers - reveal children instead */ 
         }
         .testimonials-grid {
             display: grid;
@@ -802,31 +804,6 @@
             border: 1px solid rgba(255,255,255,0.05);
             border-radius: 12px;
             padding: 28px;
-        }
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 12px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 6px;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.9rem;
-            transition: border-color 0.3s;
-        }
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: #ff4500;
-        }
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        .contact-form button {
-            margin-top: 8px;
         }
         .contact-map iframe {
             width: 100%;
@@ -1423,15 +1400,15 @@
                     </div>
                 </div>
                 <div class="contact-form-wrapper">
-                    <form class="contact-form" action="https://formspree.io/f/xyz" method="POST">
+                    <div class="contact-form-wrapper">
                         <h4 style="margin-bottom:16px;font-weight:600;">Mande sua mensagem</h4>
-                        <input type="text" name="nome" placeholder="Seu nome" required>
-                        <input type="tel" name="whatsapp" placeholder="WhatsApp (com DDD)" required>
-                        <textarea name="mensagem" placeholder="Quero agendar uma aula experimental!" rows="3"></textarea>
-                        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
-                            <i class="fab fa-whatsapp"></i> Enviar
+                        <input type="text" id="formNome" placeholder="Seu nome" style="width:100%;padding:14px;margin-bottom:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#fff;font-family:'Poppins',sans-serif;font-size:0.9rem;">
+                        <input type="tel" id="formWhatsapp" placeholder="WhatsApp (com DDD)" style="width:100%;padding:14px;margin-bottom:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#fff;font-family:'Poppins',sans-serif;font-size:0.9rem;">
+                        <textarea id="formMsg" placeholder="Quero agendar uma aula experimental!" rows="3" style="width:100%;padding:14px;margin-bottom:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#fff;font-family:'Poppins',sans-serif;font-size:0.9rem;resize:vertical;min-height:80px;"></textarea>
+                        <button onclick="abrirWhatsApp()" class="btn btn-primary" style="width:100%;justify-content:center;">
+                            <i class="fab fa-whatsapp"></i> Enviar pelo WhatsApp
                         </button>
-                    </form>
+                    </div>
                 </div>
                 <div class="contact-map">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.0!2d-51.2421!3d-30.0853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9519789ce7ae4027%3A0x6e003e97e451629f!2sAgility%20Cristal!5e0!3m2!1spt-BR!2sbr!4v1690000000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -1565,8 +1542,6 @@
         }, { threshold: 0.1 });
 
         revealElements.forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
@@ -1576,10 +1551,20 @@
             revealElements.forEach(el => {
                 const rect = el.getBoundingClientRect();
                 if (rect.top < window.innerHeight) {
-                    el.classList.add('revealed');
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
                 }
             });
-        }, 200);
+        }, 300);
+
+        // === Formulário WhatsApp ===
+        function abrirWhatsApp() {
+            const nome = document.getElementById('formNome').value || '';
+            const zap = document.getElementById('formWhatsapp').value || '';
+            const msg = document.getElementById('formMsg').value || 'Quero agendar uma aula experimental!';
+            const texto = encodeURIComponent(`Olá! Me chamo ${nome}. ${msg} Meu WhatsApp: ${zap}`);
+            window.open(`https://wa.me/555131058826?text=${texto}`, '_blank');
+        }
     </script>
 </body>
 </html>
