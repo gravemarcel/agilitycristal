@@ -503,8 +503,8 @@
         }
         .schedule-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 24px;
         }
         .schedule-day {
             background: rgba(255,255,255,0.02);
@@ -531,6 +531,16 @@
         .schedule-class:last-child { border-bottom: none; }
         .schedule-class .time { font-weight: 600; color: #fff; }
         .schedule-class .class-name { color: #888; font-weight: 300; }
+        .highlight-class {
+            background: rgba(255,69,0,0.1);
+            border-radius: 4px;
+            padding: 10px 8px !important;
+            margin: 4px -8px;
+        }
+        .highlight-class .class-name { color: #ff4500 !important; }
+        .schedule-closed {
+            opacity: 0.5;
+        }
         .schedule-note {
             text-align: center;
             margin-top: 40px;
@@ -609,6 +619,52 @@
         }
         .pricing-card li i { color: #ff4500; font-size: 0.8rem; }
         .pricing-card li .na { color: #444; }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            background: #0a0a0a;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .testimonial-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+        .testimonial-card:hover {
+            border-color: rgba(255,69,0,0.2);
+            background: rgba(255,69,0,0.03);
+            transform: translateY(-3px);
+        }
+        .testimonial-stars {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+        .testimonial-text {
+            font-size: 0.9rem;
+            color: #aaa;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+        .testimonial-author {
+            font-size: 0.8rem;
+            color: #ff4500;
+            font-weight: 600;
+        }
+        .testimonials-google {
+            text-align: center;
+            margin-top: 40px;
+        }
+        @media (max-width: 768px) {
+            .testimonials-grid { grid-template-columns: 1fr; }
+        }
 
         /* ===== CTA ===== */
         .cta {
@@ -783,6 +839,33 @@
             0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.3); }
             50% { box-shadow: 0 4px 30px rgba(37,211,102,0.5); }
         }
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            background: #fff;
+            color: #0a0a0a;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .whatsapp-tooltip::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left: 6px solid #fff;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+        }
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+        }
 
         /* ===== SCROLL TO TOP ===== */
         .scroll-top {
@@ -949,8 +1032,8 @@
                             <p>Anos de Box</p>
                         </div>
                         <div class="hero-stat">
-                            <h3>🏋️</h3>
-                            <p>CrossFit</p>
+                            <h3>⭐ 5.0</h3>
+                            <p>Google</p>
                         </div>
                     </div>
                 </div>
@@ -1071,79 +1154,27 @@
             <p class="section-subtitle">Turmas durante toda a semana. Escolha o melhor horário pra você.</p>
             <div class="schedule-grid">
                 <div class="schedule-day">
-                    <h3>Segunda</h3>
+                    <h3><i class="fas fa-calendar-check"></i> Seg a Sex</h3>
                     <div class="schedule-class"><span class="time">06:00</span><span class="class-name">Cross Training</span></div>
                     <div class="schedule-class"><span class="time">07:30</span><span class="class-name">Cross Training</span></div>
                     <div class="schedule-class"><span class="time">08:30</span><span class="class-name">Cross Training</span></div>
                     <div class="schedule-class"><span class="time">09:30</span><span class="class-name">Cross Training</span></div>
                     <div class="schedule-class"><span class="time">12:10</span><span class="class-name">Cross Training</span></div>
                     <div class="schedule-class"><span class="time">16:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">17:10</span><span class="class-name">Strength</span></div>
+                    <div class="schedule-class highlight-class"><span class="time">17:10</span><span class="class-name">Strength <i class="fas fa-fire"></i></span></div>
                     <div class="schedule-class"><span class="time">18:10</span><span class="class-name">Cross Training</span></div>
                     <div class="schedule-class"><span class="time">19:10</span><span class="class-name">Cross Training</span></div>
                     <div class="schedule-class"><span class="time">20:10</span><span class="class-name">Cross Training</span></div>
                 </div>
                 <div class="schedule-day">
-                    <h3>Terça</h3>
-                    <div class="schedule-class"><span class="time">06:00</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">07:30</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">08:30</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">09:30</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">12:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">16:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">17:10</span><span class="class-name">Strength</span></div>
-                    <div class="schedule-class"><span class="time">18:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">19:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">20:10</span><span class="class-name">Cross Training</span></div>
-                </div>
-                <div class="schedule-day">
-                    <h3>Quarta</h3>
-                    <div class="schedule-class"><span class="time">06:00</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">07:30</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">08:30</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">09:30</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">12:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">16:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">17:10</span><span class="class-name">Strength</span></div>
-                    <div class="schedule-class"><span class="time">18:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">19:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">20:10</span><span class="class-name">Cross Training</span></div>
-                </div>
-                <div class="schedule-day">
-                    <h3>Quinta</h3>
-                    <div class="schedule-class"><span class="time">06:00</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">07:30</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">08:30</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">09:30</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">12:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">16:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">17:10</span><span class="class-name">Strength</span></div>
-                    <div class="schedule-class"><span class="time">18:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">19:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">20:10</span><span class="class-name">Cross Training</span></div>
-                </div>
-                <div class="schedule-day">
-                    <h3>Sexta</h3>
-                    <div class="schedule-class"><span class="time">06:00</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">07:30</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">08:30</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">09:30</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">12:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">16:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">17:10</span><span class="class-name">Strength</span></div>
-                    <div class="schedule-class"><span class="time">18:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">19:10</span><span class="class-name">Cross Training</span></div>
-                    <div class="schedule-class"><span class="time">20:10</span><span class="class-name">Cross Training</span></div>
-                </div>
-                <div class="schedule-day">
-                    <h3>Sábado</h3>
+                    <h3><i class="fas fa-sun"></i> Sábado</h3>
                     <div class="schedule-class"><span class="time">06:00</span><span class="class-name">Cross Training</span></div>
                     <div class="schedule-class"><span class="time">07:30</span><span class="class-name">Cross Training</span></div>
                     <div class="schedule-class"><span class="time">08:30</span><span class="class-name">Cross Training</span></div>
                     <div class="schedule-class"><span class="time">09:30</span><span class="class-name">Cross Training</span></div>
                 </div>
-                <div class="schedule-day">
-                    <h3>Domingo</h3>
+                <div class="schedule-day schedule-closed">
+                    <h3><i class="fas fa-door-closed"></i> Domingo</h3>
                     <div class="schedule-class"><span class="time">—</span><span class="class-name">Fechado</span></div>
                 </div>
             </div>
@@ -1173,8 +1204,7 @@
                         <i class="fab fa-whatsapp"></i> Agendar
                     </a>
                 </div>
-                <div class="pricing-card featured">
-                    <span class="pill">Mais Popular</span>
+                <div class="pricing-card">
                     <h3>Mensal</h3>
                     <div class="price">R$ 199 <span>/mês</span></div>
                     <ul>
@@ -1189,7 +1219,8 @@
                         <i class="fab fa-whatsapp"></i> Quero Esse
                     </a>
                 </div>
-                <div class="pricing-card">
+                <div class="pricing-card featured">
+                    <span class="pill">Melhor Custo-Benefício</span>
                     <h3>Trimestral</h3>
                     <div class="price">R$ 499 <span>/trimestre</span></div>
                     <ul>
@@ -1216,6 +1247,37 @@
             <a href="https://wa.me/555131058826?text=Quero%20agendar%20uma%20aula%20experimental!" target="_blank" class="btn btn-whatsapp">
                 <i class="fab fa-whatsapp"></i> Agende Sua Aula Grátis
             </a>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials section" id="testimonials">
+        <div class="container">
+            <div class="accent-line"></div>
+            <h2 class="section-title">Quem Treina, Recomenda</h2>
+            <p class="section-subtitle">A melhor propaganda é a satisfação de quem já faz parte da comunidade.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐ 5.0</div>
+                    <p class="testimonial-text">"Ambiente incrível, coaches super atenciosos. Entrei achando que não ia dar conta e hoje não falto um dia. A comunidade faz toda diferença!"</p>
+                    <div class="testimonial-author">— Aluna Google Maps</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐ 5.0</div>
+                    <p class="testimonial-text">"Melhor box de CrossFit da Zona Sul. Equipamento de primeira, turmas organizadas e os coaches realmente sabem o que estão fazendo."</p>
+                    <div class="testimonial-author">— Aluno Google Maps</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐ 5.0</div>
+                    <p class="testimonial-text">"Treino aqui há 2 anos e a evolução é nítida. O Marcel e a equipe são profissionais de verdade. Wellhub facilitou demais!"</p>
+                    <div class="testimonial-author">— Aluno Google Maps</div>
+                </div>
+            </div>
+            <div class="testimonials-google">
+                <a href="https://maps.google.com/?q=Agility+Cristal+Porto+Alegre" target="_blank" class="btn btn-outline">
+                    <i class="fas fa-star" style="color:#ff4500;"></i> Veja mais avaliações no Google
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1319,6 +1381,7 @@
     <!-- ===== WHATSAPP FLOATING ===== -->
     <a href="https://wa.me/555131058826?text=Quero%20agendar%20uma%20aula%20experimental!" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
         <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Aula Grátis!</span>
     </a>
 
     <!-- ===== SCROLL TO TOP ===== -->
